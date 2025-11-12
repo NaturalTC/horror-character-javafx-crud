@@ -1,0 +1,46 @@
+package com.example.crudjavafxhorror.controller;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class DashboardController extends Initializable {
+
+    @FXML Button btnCreate;
+    @FXML Button btnDelete;
+    @FXML Button btnUpdate;
+    @FXML ListView lstEntries;
+
+    @FXML
+    private void handleCreateClick(ActionEvent event) throws IOException {
+        // Load the new FXML file
+        Parent popupPage = FXMLLoader.load(getClass().getResource("popup-page.fxml"));
+        Scene createCharacter = new Scene(popupPage);
+        // Get current stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Set new scene
+        stage.setScene(createCharacter);
+        stage.setTitle("Create Horror Record");
+        stage.setHeight(250);
+        stage.setWidth(70);
+        stage.isResizable();
+        stage.show();
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+}
