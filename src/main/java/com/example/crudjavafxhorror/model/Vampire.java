@@ -10,10 +10,10 @@ public class Vampire extends HorrorCharacter implements Transformable {
 
     // State to track transformation
     private boolean transformed = false;
-    private final Random random = new Random();
 
-    public Vampire(String name, int health) {
+    public Vampire(String name, int health, boolean transformed) {
         super(name, health);
+        this.transformed = transformed;
 
         // Vampires are vulnerable to sunlight and holy water
         setVulnerabilities(new Vulnerability[]{
