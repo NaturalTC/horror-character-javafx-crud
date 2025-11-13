@@ -10,12 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="500.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crudjavafxhorror.controller.PopupController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="250.0">
          <children>
-            <Label alignment="CENTER" prefHeight="75.0" prefWidth="250.0" text="( changes based off selection )">
+            <Label fx:id="lblPopupTitle" alignment="CENTER" prefHeight="70.0" prefWidth="250.0" text="( changes based off selection )">
                <font>
                   <Font name="Storm Gust" size="18.0" />
                </font>
@@ -25,15 +24,15 @@
                   <Font name="Storm Gust" size="21.0" />
                </font>
             </Label>
-            <ComboBox prefHeight="34.0" prefWidth="213.0" />
-            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="250.0">
+            <ComboBox fx:id="cmbCharacterType" prefHeight="34.0" prefWidth="213.0" />
+            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="304.0">
                <children>
                   <Label text="Name: ">
                      <font>
                         <Font name="Storm Gust" size="19.0" />
                      </font>
                   </Label>
-                  <TextField />
+                  <TextField fx:id="txtName" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="75.0" prefWidth="250.0">
@@ -43,22 +42,22 @@
                         <Font name="Storm Gust" size="19.0" />
                      </font>
                   </Label>
-                  <TextField prefWidth="160.0" />
+                  <TextField fx:id="txtHealth" prefWidth="160.0" />
                </children>
             </HBox>
-            <RadioButton mnemonicParsing="false" prefHeight="65.0" prefWidth="149.0" text="Transformed?">
+            <RadioButton fx:id="rbtnTransformed" mnemonicParsing="false" prefHeight="65.0" prefWidth="149.0" text="Transformed?">
                <font>
                   <Font name="Storm Gust" size="19.0" />
                </font>
             </RadioButton>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
-                  <Button mnemonicParsing="false" text="Cancel">
+                  <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel" onAction="#handleCancelClick">
                      <font>
                         <Font name="Storm Gust" size="21.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Submit">
+                  <Button fx:id="btnSubmit" mnemonicParsing="false" text="Submit">
                      <font>
                         <Font name="Storm Gust" size="21.0" />
                      </font>

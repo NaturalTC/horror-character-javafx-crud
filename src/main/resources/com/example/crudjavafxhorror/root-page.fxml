@@ -23,25 +23,25 @@
                         <Font name="Storm Gust" size="31.0" />
                      </font>
                   </Label>
-                  <DatePicker id="dtPicker" />
+                  <DatePicker fx:id="dtPicker" />
                </children>
             </HBox>
             <HBox prefHeight="726.0" prefWidth="1000.0">
                <children>
-                  <ListView id="lstEntries" prefHeight="688.0" prefWidth="826.0" />
+                  <ListView fx:id="lstEntries" prefHeight="688.0" prefWidth="826.0" />
                   <VBox alignment="TOP_CENTER" prefHeight="688.0" prefWidth="233.0" spacing="20.0">
                      <children>
-                        <Button id="btnCreate" mnemonicParsing="false" text="Create">
+                        <Button fx:id="btnCreate" mnemonicParsing="false" text="Create" onAction="#handleCreateClick">
                            <font>
                               <Font name="Storm Gust" size="31.0" />
                            </font>
                         </Button>
-                        <Button id="btnDelete" mnemonicParsing="false" text="Delete">
+                        <Button fx:id="btnDelete" mnemonicParsing="false" text="Delete">
                            <font>
                               <Font name="Storm Gust" size="31.0" />
                            </font>
                         </Button>
-                        <Button id="btnUpdate" mnemonicParsing="false" text="Update">
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" text="Update">
                            <font>
                               <Font name="Storm Gust" size="31.0" />
                            </font>
