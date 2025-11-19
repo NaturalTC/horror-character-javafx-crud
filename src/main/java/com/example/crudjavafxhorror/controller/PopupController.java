@@ -1,9 +1,6 @@
 package com.example.crudjavafxhorror.controller;
 
-import com.example.crudjavafxhorror.model.HorrorCharacter;
-import com.example.crudjavafxhorror.model.Vampire;
-import com.example.crudjavafxhorror.model.Werewolf;
-import com.example.crudjavafxhorror.model.Zombie;
+import com.example.crudjavafxhorror.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +26,8 @@ public class PopupController implements Initializable {
     @FXML private RadioButton rbtnTransformed;
     @FXML private ComboBox<String> cmbCharacterType;
 
+    // Handles AppState
+    private AppState appState;
 
     // Event Handler - reminds me of Android Programming
     @FXML
@@ -48,6 +47,16 @@ public class PopupController implements Initializable {
         stage.setHeight(750);
         stage.isResizable();
         stage.show();
+    }
+
+
+    /* Ok, so my thought process is I need to store the role based on what has been selected for the submit so I can
+        update the transformable button based on a boolean condition if it is possible.
+     */
+    @FXML
+    private String returnRole(ActionEvent event)
+    {
+        return cmbCharacterType.getValue();
     }
 
     @FXML
@@ -77,8 +86,11 @@ public class PopupController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        // Character Types that are loaded into the combo box
-        cmbCharacterType.getItems().addAll("Vampire", "Werewolf", "Zombie");
+        cmbCharacterType.setPromptText("Select a Horror Character");
+        String[] horrorCharacters = {"Vampire", "Werewolf", "Zombie"};
+        for (String hc : horrorCharacters)
+        {
+            cmbCharacterType.getItems().add(hc);
+        }
     }
 }

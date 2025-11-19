@@ -2,6 +2,7 @@ package com.example.crudjavafxhorror.model;
 
 
 import com.example.crudjavafxhorror.enums.Vulnerability;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  * Class representing a Zombie character in the horror RPG game.

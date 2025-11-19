@@ -3,8 +3,7 @@ package com.example.crudjavafxhorror.model;
 
 import com.example.crudjavafxhorror.enums.Vulnerability;
 import com.example.crudjavafxhorror.interfaces.Transformable;
-
-import java.util.Random;
+import javafx.beans.property.SimpleStringProperty;
 
 public class Vampire extends HorrorCharacter implements Transformable {
 
@@ -30,18 +29,6 @@ public class Vampire extends HorrorCharacter implements Transformable {
 
     @Override
     public void transform() {
-        if (getHealth() <= 0) {
-            System.out.println(getName() + " you are dead! You cannot transform.\n");
-        } else if (transformed) {
-            System.out.println(getName() + " is transformed back into a vampire!\n");
-            setName(getName().replace("Bat-", ""));
-            setHealth(getHealth() + 10);
-            transformed = false;
-        } else {
-            System.out.println(getName() + " transforms into a bat!\n");
-            setName("Bat-" + getName());
-            setHealth(getHealth() - 10);
-            transformed = true;
-        }
+        System.out.println(getName() + " has transformed into a Vampire Lord!\n");
     }
 }

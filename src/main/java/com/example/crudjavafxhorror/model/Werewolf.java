@@ -27,7 +27,6 @@ public class Werewolf extends HorrorCharacter implements Transformable {
                 Vulnerability.SILVER
         });
     }
-
     /**
      * Flee method
      */
@@ -36,27 +35,9 @@ public class Werewolf extends HorrorCharacter implements Transformable {
         System.out.println(getName() + " tries to escape but fell on his face!\n");
     }
 
-    /**
-     * Transform method, toggles between werewolf and human forms.
-     * Transforming into a human reduces health by 30, transforming back restores 30 health
-     * if health is above 0.
-     * If health is 0 or below, transformation is not possible.
-     */
     @Override
     public void transform() {
-        if (getHealth() <= 0) {
-            System.out.println(getName() + " you are dead! You cannot transform.\n");
-        } else if (transformed) {
-            System.out.println(getName() + " is transformed back into a werewolf!\n");
-            setName(getName().replace("Human Form - ", ""));
-            setHealth(getHealth() + 30);
-            transformed = false;
-        } else {
-            System.out.println(getName() + " transforms into a human!\n");
-            setName("Human Form - " + getName());
-            setHealth(getHealth() - 30);
-            transformed = true;
-        }
+        System.out.println(getName() + " has transformed into a savage werewolf!\n");
     }
 
 
