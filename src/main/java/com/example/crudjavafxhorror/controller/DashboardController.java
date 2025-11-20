@@ -1,5 +1,6 @@
 package com.example.crudjavafxhorror.controller;
 
+import com.example.crudjavafxhorror.model.AppState;
 import com.example.crudjavafxhorror.model.HorrorCharacter;
 import com.example.crudjavafxhorror.model.Vampire;
 import javafx.collections.FXCollections;
@@ -11,38 +12,38 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
+
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
 
-    @FXML private TableView<HorrorCharacter> tblHorrorCharacter;
+    // So this is where I connect my frontend
+    @FXML private TableView<HorrorCharacter> tblHorrorCharacters;
     @FXML private TableColumn<HorrorCharacter, String> clmName;
     @FXML private TableColumn<HorrorCharacter, Integer> clmHealth;
     @FXML private TableColumn<HorrorCharacter, String> clmVulnerabilities;
+    @FXML private TableColumn<HorrorCharacter, String> clmDate;
 
+    // Here too
     @FXML private Button btnCreate;
     @FXML private Button btnDelete;
     @FXML private Button btnUpdate;
 
-    // ObserverList
-    private ObservableList<HorrorCharacter> data= FXCollections.observableArrayList();
-
+    // Changes to my other scene, unique temporary way of handling this in the controller
     @FXML
-    private void handleCreateClick(ActionEvent event) throws IOException {
+    private void createButtonClicked(ActionEvent event) throws IOException {
 
-        // Load the new FXML file
+        // Load the new FXML file - Boiler plate google stuff
         Parent popupPage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/crudjavafxhorror/popup-page.fxml")));
         Scene createCharacter = new Scene(popupPage);
 
@@ -57,35 +58,39 @@ public class DashboardController implements Initializable {
         stage.isResizable();
         stage.show();
     }
-    
-    // Generate some data
-    public ObservableList<HorrorCharacter> getHorrorCharacters()
+
+    // Boilerplate code used from the example
+    @FXML
+    public void deleteButtonPressed(ActionEvent event)
     {
-        data.add(new Vampire("Alucard", 50, false));
-        data.add(new Vampire("Stugar", 65, false));
-        data.add(new Vampire("Damian", 30, true));
-        data.add(new Vampire("Dracula", 100, true));
-        data.add(new Vampire("Barley", 55, false));
-        return data;
+        ObservableList<HorrorCharacter> allHorrorCharacters = tblHorrorCharacters.getItems();
+        ObservableList<HorrorCharacter> selectedRows = tblHorrorCharacters.getSelectionModel().getSelectedItems();
+
+        for(HorrorCharacter m : selectedRows)
+        {
+            allHorrorCharacters.remove(m);
+        }
     }
 
-
-    // Ok right now this stuff is like all jargon in my brain? What the hell is going on. (Look into reflection)
+    // Mostly boiler plate from the example
+    // Ok right now this stuff is like all jargon in my brain? What the heck is going on? (Look into reflection)
+    // Update: Okay I under stand the syntax stuff now. But I haven't gone down the rabbit hole.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         clmName.setCellValueFactory(new PropertyValueFactory<HorrorCharacter, String>("name"));
         clmHealth.setCellValueFactory(new PropertyValueFactory<HorrorCharacter, Integer>("health"));
         clmVulnerabilities.setCellValueFactory(new PropertyValueFactory<HorrorCharacter, String>("vulnerabilities"));
+        clmDate.setCellValueFactory(new PropertyValueFactory<HorrorCharacter, String>("date"));
 
         //Set up the columns to be editable
-        tblHorrorCharacter.setEditable(true);
+        tblHorrorCharacters.setEditable(true);
         clmName.setCellFactory(TextFieldTableCell.forTableColumn());
         clmHealth.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        clmVulnerabilities.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        tblHorrorCharacter.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        clmDate.setCellFactory(TextFieldTableCell.forTableColumn());
+        tblHorrorCharacters.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         //Get data from the 'backend'
-        tblHorrorCharacter.setItems(getHorrorCharacters());
+        tblHorrorCharacters.setItems(AppState.getState().getData());
+
     }
 }

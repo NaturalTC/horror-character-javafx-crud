@@ -1,9 +1,9 @@
 package com.example.crudjavafxhorror.model;
 
-import com.example.crudjavafxhorror.enums.Vulnerability;
+import com.example.crudjavafxhorror.model.enums.Vulnerability;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -17,6 +17,7 @@ public abstract class HorrorCharacter {
     private SimpleStringProperty name;
     private SimpleIntegerProperty health;
     private Vulnerability[] vulnerabilities;
+    private LocalDate date;
 
     /**
      * Constructor for a HorrorCharacter with health and optional mana.
@@ -24,14 +25,15 @@ public abstract class HorrorCharacter {
      * @param name   Name of the character.
      * @param health Initial health value.
      */
-    public HorrorCharacter(String name, int health) {
+    public HorrorCharacter(String name, int health, LocalDate date) {
         this.name = new SimpleStringProperty(name);
         this.health = new SimpleIntegerProperty(health);
         this.vulnerabilities = Vulnerability.values(); // default: all vulnerabilities
+        this.date = date;
     }
 
     // ------------------------------------------------------------------------------
-
+    // abstract method
     public abstract void flee();
 
     // ------------------------------------------------------------------------------
@@ -40,27 +42,24 @@ public abstract class HorrorCharacter {
         this.name = name;
     }
 
-    public SimpleStringProperty getName() {
-        return name;
-    }
+    public String getName() { return name.get(); }
+
+    public String getDate(){ return date.toString(); }
 
     public void setHealth(SimpleIntegerProperty health) {
         this.health = health;
     }
 
-    public SimpleIntegerProperty getHealth() {
-        return health;
-    }
+    public Integer getHealth() { return health.get(); }
 
     public void setVulnerabilities(Vulnerability[] vulnerabilities) {
         this.vulnerabilities = vulnerabilities;
     }
 
-    public SimpleStringProperty getVulnerabilities() {
-        return new SimpleStringProperty(
-                Arrays.stream(vulnerabilities)
+    public String getVulnerabilities() {
+        return Arrays.stream(vulnerabilities)
                         .map(Enum::name)
-                        .collect(Collectors.joining(", "))
+                        .collect(Collectors.joining(", ")
         );
     }
 

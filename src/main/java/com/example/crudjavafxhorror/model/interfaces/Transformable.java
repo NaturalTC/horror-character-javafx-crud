@@ -1,4 +1,4 @@
-package com.example.crudjavafxhorror.interfaces;
+package com.example.crudjavafxhorror.model.interfaces;
 
 /**
  * Transformable interface for characters that can transform.

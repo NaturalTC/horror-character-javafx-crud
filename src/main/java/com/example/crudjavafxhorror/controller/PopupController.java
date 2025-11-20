@@ -8,14 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -25,9 +23,38 @@ public class PopupController implements Initializable {
     @FXML private TextField txtHealth;
     @FXML private RadioButton rbtnTransformed;
     @FXML private ComboBox<String> cmbCharacterType;
+    @FXML private DatePicker dtePicker;
 
-    // Handles AppState
-    private AppState appState;
+    //
+    @FXML
+    private void onSubmit(ActionEvent event) throws IOException {
+        String name = txtName.getText();
+        String type = cmbCharacterType.getValue();
+        int health = Integer.parseInt(txtHealth.getText());
+        LocalDate date = dtePicker.getValue();
+        boolean transformed = rbtnTransformed.isSelected();
+
+        // this was my debugging code i just left it in here why not
+        System.out.printf("%s %s %d %s %b", type, name, health, date, transformed);
+
+        /*
+        I use an appState here pretty much as a singleton, everything is static and stored in one location (class)
+        Based on the type instantiate an object of that Horror Character and add it into the ObservableList.
+         */
+        switch (type)
+        {
+            case "Werewolf":
+                AppState.getState().addHorrorCharacter(new Werewolf(name, health, transformed, date));
+                break;
+            case "Vampire":
+                AppState.getState().addHorrorCharacter(new Vampire(name, health, transformed, date));
+                break;
+            case "Zombie":
+                AppState.getState().addHorrorCharacter(new Zombie(name, health, date));
+                break;
+        }
+        returnToDashboard(event);
+    }
 
     // Event Handler - reminds me of Android Programming
     @FXML
@@ -42,47 +69,12 @@ public class PopupController implements Initializable {
 
         // Set new scene
         stage.setScene(createCharacter);
-        stage.setTitle("Create Horror Record");
+        stage.setTitle("Horror Vault");
         stage.setWidth(1000);
         stage.setHeight(750);
         stage.isResizable();
         stage.show();
     }
-
-
-    /* Ok, so my thought process is I need to store the role based on what has been selected for the submit so I can
-        update the transformable button based on a boolean condition if it is possible.
-     */
-    @FXML
-    private String returnRole(ActionEvent event)
-    {
-        return cmbCharacterType.getValue();
-    }
-
-    @FXML
-    private void onSubmit(ActionEvent event) throws IOException {
-        String name = txtName.getText();
-        String type = cmbCharacterType.getValue();
-        int health = Integer.parseInt(txtHealth.getText());
-        boolean transformed = rbtnTransformed.isSelected();
-
-        HorrorCharacter newHorrorCharacter;
-
-        switch (type)
-        {
-            case ("Vampire"):
-                newHorrorCharacter = new Vampire(name, health, transformed);
-                break;
-            case ("Werewolf"):
-                newHorrorCharacter = new Werewolf(name, health, transformed);
-                break;
-            case ("Zombie"):
-                newHorrorCharacter = new Zombie(name, health);
-                break;
-        }
-        returnToDashboard(event);
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

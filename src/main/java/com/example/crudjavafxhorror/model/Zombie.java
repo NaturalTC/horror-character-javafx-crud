@@ -1,8 +1,9 @@
 package com.example.crudjavafxhorror.model;
 
 
-import com.example.crudjavafxhorror.enums.Vulnerability;
-import javafx.beans.property.SimpleStringProperty;
+import com.example.crudjavafxhorror.model.enums.Vulnerability;
+
+import java.time.LocalDate;
 
 /**
  * Class representing a Zombie character in the horror RPG game.
@@ -15,8 +16,8 @@ public class Zombie extends HorrorCharacter {
      * @param name name of the zombie
      * @param health health of the zombie
      */
-    public Zombie(String name, int health) {
-        super(name, health);
+    public Zombie(String name, int health, LocalDate date) {
+        super(name, health, date);
 
         // Zombies are vulnerable to fire and sunlight
         setVulnerabilities(new Vulnerability[] {
@@ -31,7 +32,7 @@ public class Zombie extends HorrorCharacter {
      */
     @Override
     public void flee() {
-        System.out.println(getName() + " is unable to flee!\n");
+        System.out.println(getName() + " zombie is to dumb to escape!\n");
     }
 
 }

@@ -1,7 +1,9 @@
 package com.example.crudjavafxhorror.model;
 
-import com.example.crudjavafxhorror.enums.Vulnerability;
-import com.example.crudjavafxhorror.interfaces.Transformable;
+import com.example.crudjavafxhorror.model.enums.Vulnerability;
+import com.example.crudjavafxhorror.model.interfaces.Transformable;
+
+import java.time.LocalDate;
 
 /**
  * Werewolf class, a type of HorrorCharacter that can transform into a human.
@@ -9,17 +11,14 @@ import com.example.crudjavafxhorror.interfaces.Transformable;
  */
 public class Werewolf extends HorrorCharacter implements Transformable {
 
-    // State to track transformation
-    private boolean transformed = false;
-
     /**
      * Constructor
      * @param name name of the werewolf
      * @param health health of the werewolf
      */
-    public Werewolf(String name, int health, boolean transformed) {
-        super(name, health);
-        this.transformed = transformed;
+    public Werewolf(String name, int health, boolean transformed, LocalDate date) {
+        super(name, health, date);
+        // State to track transformation
 
         // Werewolves are vulnerable to sunlight and silver
         setVulnerabilities(new Vulnerability[] {
@@ -32,7 +31,7 @@ public class Werewolf extends HorrorCharacter implements Transformable {
      */
     @Override
     public void flee() {
-        System.out.println(getName() + " tries to escape but fell on his face!\n");
+        System.out.println(getName() + " haha escape NEVER!!!\n");
     }
 
     @Override

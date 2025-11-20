@@ -1,18 +1,18 @@
 package com.example.crudjavafxhorror.model;
 
 
-import com.example.crudjavafxhorror.enums.Vulnerability;
-import com.example.crudjavafxhorror.interfaces.Transformable;
-import javafx.beans.property.SimpleStringProperty;
+import com.example.crudjavafxhorror.model.enums.Vulnerability;
+import com.example.crudjavafxhorror.model.interfaces.Transformable;
+
+import java.time.LocalDate;
+
 
 public class Vampire extends HorrorCharacter implements Transformable {
 
-    // State to track transformation
-    private boolean transformed = false;
-
-    public Vampire(String name, int health, boolean transformed) {
-        super(name, health);
-        this.transformed = transformed;
+    // Constructor
+    public Vampire(String name, int health, boolean transformed, LocalDate date) {
+        super(name, health, date);
+        // State to track transformation
 
         // Vampires are vulnerable to sunlight and holy water
         setVulnerabilities(new Vulnerability[]{
@@ -21,11 +21,12 @@ public class Vampire extends HorrorCharacter implements Transformable {
         });
     }
 
+    // ------------------------------------------------------------------------------
+
     @Override
     public void flee() {
-        System.out.println(getName() + " tries to escape but fell on his face!\n");
+        System.out.println(getName() + " escapes before the sunlight!\n");
     }
-
 
     @Override
     public void transform() {
