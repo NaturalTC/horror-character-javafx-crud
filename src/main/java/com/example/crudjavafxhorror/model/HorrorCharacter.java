@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 /**
@@ -44,11 +45,18 @@ public abstract class HorrorCharacter {
 
     public String getName() { return name.get(); }
 
-    public String getDate(){ return date.toString(); }
+    public String getTableDate(){ return this.date.toString(); }
+
+    public LocalDate getDate() { return this.date; }
 
     public void setHealth(SimpleIntegerProperty health) {
         this.health = health;
     }
+
+    // This method is used to return the type of the class for my frontend UI
+    public String getType() { return this.getClass().getSimpleName();}
+
+    public void setType(String updatedCharter) {};
 
     public Integer getHealth() { return health.get(); }
 
@@ -63,5 +71,7 @@ public abstract class HorrorCharacter {
         );
     }
 
-
+    public void setDate(LocalDate updatedDate) {
+        this.date = updatedDate;
+    }
 }

@@ -26,6 +26,7 @@ public class Werewolf extends HorrorCharacter implements Transformable {
                 Vulnerability.SILVER
         });
     }
+
     /**
      * Flee method
      */

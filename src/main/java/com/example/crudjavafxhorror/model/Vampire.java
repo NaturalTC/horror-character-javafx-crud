@@ -8,12 +8,15 @@ import java.time.LocalDate;
 
 
 public class Vampire extends HorrorCharacter implements Transformable {
+    // attributes
+    private boolean transformed;
 
     // Constructor
     public Vampire(String name, int health, boolean transformed, LocalDate date) {
         super(name, health, date);
-        // State to track transformation
 
+        // State to track transformation
+        this.transformed = transformed;
         // Vampires are vulnerable to sunlight and holy water
         setVulnerabilities(new Vulnerability[]{
                 Vulnerability.SUNLIGHT,
@@ -22,6 +25,9 @@ public class Vampire extends HorrorCharacter implements Transformable {
     }
 
     // ------------------------------------------------------------------------------
+
+    public boolean getTransformed(){ return transformed; }
+
 
     @Override
     public void flee() {

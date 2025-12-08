@@ -3,6 +3,7 @@ module com.example.crudjavafxhorror {
     requires javafx.fxml;
     requires javafx.base;
     requires javafx.graphics;
+    requires java.sql;
 
 
     opens com.example.crudjavafxhorror to javafx.fxml;
