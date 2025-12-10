@@ -3,7 +3,6 @@ package com.example.crudjavafxhorror.model;
 
 import com.example.crudjavafxhorror.model.enums.Vulnerability;
 import com.example.crudjavafxhorror.model.interfaces.Transformable;
-
 import java.time.LocalDate;
 
 
@@ -27,7 +26,6 @@ public class Vampire extends HorrorCharacter implements Transformable {
     // ------------------------------------------------------------------------------
 
     public boolean getTransformed(){ return transformed; }
-
 
     @Override
     public void flee() {

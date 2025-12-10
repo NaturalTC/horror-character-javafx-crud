@@ -33,6 +33,12 @@ import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
 
+    /* Notes for myself
+     - In the book they use alerts and Validation methods for different datatypes, I didnt handle that
+     - I also didn't implement my Transformable Button, It doesnt do anything (ran out of time)
+     -
+     */
+
     // So this is where I connect my frontend
     @FXML private TableView<HorrorCharacter> tblHorrorCharacters;
     @FXML private TableColumn<HorrorCharacter, String> clmName;
@@ -80,6 +86,11 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+
+        /* Notes on selection model
+         - getSelectedItem() - returns the selected item
+         - select(index)     - sets the selected item to the specified index
+         */
 
         // This observable list stores the different types to choose from for the UI
         ObservableList<String> types = FXCollections.observableArrayList("Vampire", "Werewolf", "Zombie");
@@ -172,7 +183,7 @@ public class DashboardController implements Initializable {
             HorrorCharacter currentCharacter = event.getRowValue();
             String updatedDate = event.getNewValue();
             try {
-                // Convert string → LocalDate
+                // Convert string to a LocalDate
                 LocalDate parsedDate = LocalDate.parse(updatedDate);
 
                 // update the model

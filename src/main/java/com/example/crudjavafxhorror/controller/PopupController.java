@@ -78,6 +78,8 @@ public class PopupController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // From book
         cmbCharacterType.setPromptText("Select a Horror Character");
         String[] horrorCharacters = {"Vampire", "Werewolf", "Zombie"};
         for (String hc : horrorCharacters)

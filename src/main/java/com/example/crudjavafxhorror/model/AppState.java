@@ -2,7 +2,6 @@ package com.example.crudjavafxhorror.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.time.LocalDate;
 
 public class AppState {
